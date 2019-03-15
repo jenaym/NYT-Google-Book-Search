@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
+import { List, ListItem } from "../components/List";
+import DeleteBtn from "../components/DeleteBtn";
 
 class Detail extends Component {
   state = {
@@ -11,9 +13,17 @@ class Detail extends Component {
   // When this component mounts, grab the book with the _id of this.props.match.params.id
   // e.g. localhost:3000/books/599dcb67f0f16317844583fc
   componentDidMount() {
-    API.getBook(this.props.match.params.id)
+    API.getSavedBooks()
       .then(res => this.setState({ book: res.data }))
       .catch(err => console.log(err));
+  }
+
+  handleDelete = id => {
+    API.deleteBook(id).then(res =>
+      API.getSavedBooks()
+      .then(res => this.setState({ book: res.data }))
+      .catch(err => console.log(err))
+      )
   }
 
   render() {
@@ -67,7 +77,6 @@ class Detail extends Component {
         </Row>
         <Row>
           <Col size="md-2">
-            <Link to="/">← Back to Authors</Link>
           </Col>
         </Row>
       </Container>
