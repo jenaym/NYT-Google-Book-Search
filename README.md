@@ -12,7 +12,7 @@
 
 ### Deployment and Availability
 - Heroku
-  - Live app - https://shielded-wave-16938.herokuapp.com/
+  - Live app - https://infinite-eyrie-79163.herokuapp.com/
 - GitHub
   - Repository - https://github.com/jenaym/NYT-Google-Book-Search
 
